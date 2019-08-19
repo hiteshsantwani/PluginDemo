@@ -21,7 +21,7 @@ function myFunction(vesselName) {
 		  -->
 		  
 		var url = new URL("http://10.10.14.24/api/mlisa/fixtures");
-		var params = {'pageSize' : '10', 'reportedDate__gte' : '2018-01-01T05:00:00.000Z', 'reportedDate__lte' : '2019-06-01T04:00:00.000Z', 'vesselname__contains' : vesselName};
+		var params = {'pageSize' : '10', 'reportedDate__gte' : '2018-01-01T05:00:00.000Z', 'reportedDate__lte' : '2019-06-01T04:00:00.000Z', 'vesselname__contains' : vesselName.replace(/%20/g, " ")};
 		url.search = new URLSearchParams(params);
         fetch(url, {
          
