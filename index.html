@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <style>
+         body {
+         }
+         button {
+         width: 150px;
+         margin-left: auto;
+         margin-right: auto;
+         margin-top: 2px;
+         }
+         iframe {
+         display: block;
+         }
+         MLISACtls {
+         }
+      </style>
+      <!--<script type="text/javascript" src="https://dl.frontapp.com/libs/frontjs.min.js"></script>-->
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+      <!-- jQuery library -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <!-- Latest compiled JavaScript -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	   
+      <script type="text/javascript" src="https://dl.frontapp.com/libs/frontjs.min.js"></script>
+	   
+   </head>
+   <body>
+      <script>
+         function myFunction() {
+		 var vesselName = document.getElementById("FixtureSearch").value
+        
+		<!--  var url = "http://10.10.14.24/api/mlisa/fixtures?pageSize=10&reportedDate__gte=2019-01-01T05:00:00.000Z&reportedDate__lte=2019-02-01T05:00:00.000Z&vesselname__contains=Ridgebury%20John%20B";
+		  -->
+		  
+		var url = new URL("http://10.10.14.24/api/mlisa/fixtures");
+		var params = {'pageSize' : '10', 'reportedDate__gte' : '2018-01-01T05:00:00.000Z', 'reportedDate__lte' : '2019-06-01T04:00:00.000Z', 'vesselname__contains' : vesselName};
+		url.search = new URLSearchParams(params);
+         fetch(url, {
+         
+         method: 'GET', // *GET, POST, PUT, DELETE, etc.
+         mode: 'cors', // no-cors, cors, *same-origin
+         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+         credentials: 'same-origin', // include, *same-origin, omit
+         
+         headers: {
+                     'Content-Type': 'application/json',
+                     'Authorization': 'Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiaWN0LnVzQG1jcXVpbGxpbmcuY29tIiwic3ViIjoiaWN0LnVzQG1jcXVpbGxpbmcuY29tIiwiYXVkIjoiQW55IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW5pc3RyYXRvciIsIm5iZiI6MTU2NjIxNjU3MiwiZXhwIjoxNTY2MzAyOTcyLCJpc3MiOiJodHRwczovL2F0bGlzLm1jcXVsbGluZy5jb20ifQ.nKfcIzjFa2CqG2tcBOT0BGAeY_Tsc9hqoD0ZyeQeYXA'
+         
+                 }
+         })
+         .then(response => response.json())
+         .then(data => {
+		 	console.log(data);
+			Front.dialog('alert', {
+    				title: 'Fixture Data',
+    				message: data.toString()
+  				}, function () {
+    				console.log('Alert closed');
+  			});
+         })
+         .catch(error => console.error(error))
+         }
+		 
+      </script>
+      <span align="Center">
+         <b>
+            <p>MLISA Post Fixture</p>
+         </b>
+      </span>
+      <label for="FixtureSearch">Vessel Name:</label>
+      <input type="text" id="FixtureSearch" name="FixtureSearch" minlength="4" maxlength="256" size="50">
+      <label for="FixtureNumberSearch">Fixture #:</label>
+      <input type="text" id="FixtureNumberSearch" name="FixtureNumberSearch" minlength="4" maxlength="256" size="10">
+      <button onClick="myFunction()">Search</button>
+      <table bgcolor="LightGray">
+         <tr>
+            <td>C/P:<input type="text" id="a" name="a" minlength="4" maxlength="8" size="10"></td>
+            <td>Charterer<input type="text" id="b" name="b" minlength="4" maxlength="8" size="10"></td>
+            <td>Eff. Ctl<input type="text" id="c" name="c" minlength="4" maxlength="8" size="10"></td>
+            <td>Lay Date:<input type="text" id="d" name="d" minlength="4" maxlength="8" size="10"></td>
+         </tr>
+         <tr>
+            <td>Cargo:<input type="text" id="e" name="e" minlength="4" maxlength="8" size="10"></td>
+            <td>Size:<input type="text" id="f" name="f" minlength="4" maxlength="8" size="10"></td>
+            <td>Lay Date:<input type="text" id="g" name="g" minlength="4" maxlength="8" size="10"></td>
+            <td>Status:<input type="text" id="h" name="h" minlength="4" maxlength="8" size="10"></td>
+         </tr>
+         <tr>
+            <td colspan="2">
+               <b>L/D Ports:</b>
+               <table>
+                  <tr>
+                     <th>Activity</th>
+                     <th>Port</th>
+                  </tr>
+                  <tr>
+                     <td>Load:</td>
+                     <td>GOLA</td>
+                  </tr>
+                  <tr>
+                     <td>Disch:</td>
+                     <td>St Charles</td>
+                  </tr>
+               </table>
+            </td>
+            <td colspan="2">
+               <b>Itinerary:</b>
+               <table>
+                  <tr>
+                     <th>Last Port</th>
+                     <th>Activity</th>
+                     <th>ETA</th>
+                  </tr>
+                  <tr>
+                     <td>GOLA</td>
+                     <td>Load:</td>
+                  </tr>
+               </table>
+            </td>
+         </tr>
+      </table>
+      <ul class="nav nav-tabs">
+         <li><a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Documents</a></li>
+         <li><a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Alerts</a></li>
+         <li><a class="btn btn-primary" data-toggle="collapse" href="#collapseExampled" aria-expanded="false" aria-controls="collapseExampled">Notes</a></li>
+         <li><a class="btn btn-primary" data-toggle="collapse" href="#collapseExampled" aria-expanded="false" aria-controls="collapseExampled">Itinerary</a></li>
+         <li><a class="btn btn-primary" data-toggle="collapse" href="#collapseExampled" aria-expanded="false" aria-controls="collapseExampled">Claims</a></li>
+         <li><a class="btn btn-primary" data-toggle="collapse" href="#collapseExampled" aria-expanded="false" aria-controls="collapseExampled">Freight/Commissions</a></li>
+         <li><a class="btn btn-primary" data-toggle="collapse" href="#collapseExampled" aria-expanded="false" aria-controls="collapseExampled">Invoicing</a></li>
+      </ul>
+      <!-- Collapsible element -->
+      <div class="collapse" id="collapseExample">
+         <div class="iframe">
+            <iframe src="https://www.marinetraffic.com/en/ais/home/shipid:714491/zoom:10" frameborder="0" style="border:0" allowfullscreen width="100%"></iframe>
+            <button onClick="unassign()">File</button>
+            <button onClick="toggleArchive()">Chrt Reply</button>
+            <button onClick="toggleTrashed()">Owner Reply</button>
+         </div>
+      </div>
+      <div class="collapse" id="collapseExampled">
+         <div class="mt-3">
+            <iframe src="https://www.mcquilling.com" frameborder="0" style="border:0" allowfullscreen width="100%"></iframe>
+            <button onClick="reply()">Add Owner Email</button>
+            <button onClick="alertDialog()">Add Chrtr Email</button>
+            <button onClick="confirmDialog()">MLISA Tag</button>
+         </div>
+      </div>
+      <!-- / Collapsible element -->
+      <table class="bg-primary">
+         <tr>
+            <td>
+               <!--<button onClick="unassign()">File</button>
+                  <button onClick="toggleArchive()">Chrt Reply</button>
+                  <button onClick="toggleTrashed()">Owner Reply</button>-->
+               <button onClick="confirmDialog()">Linked Msgs</button>
+            </td>
+         </tr>
+      </table>
+      <table bgcolor="orange">
+         <tr>
+            <td>
+               <button onClick="unassign()">Unassign</button>
+               <button onClick="reply()">Reply</button>
+               <button onClick="alertDialog()">Pop alert dialog</button>
+               <button onclick="fetchTeammates()">Fetch teammates</button>
+            </td>
+         </tr>
+      </table>
+      <a href='https://app.frontapp.com/open/msg_4rbcn0n' target='_blank'>Document link</a>
+      <a href='https://app.frontapp.com/open/msg_4hodq87'>Document link</a>
+   </body>
+</html>
