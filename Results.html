@@ -3,7 +3,6 @@
 <body>
 
 <script>
-
 window.onload = function () {
     var url = document.location.href,
         params = url.split('?')[1].split('&'),
@@ -12,41 +11,85 @@ window.onload = function () {
          tmp = params[i].split('=');
          data[tmp[0]] = tmp[1];
     }
-    document.getElementById('here').innerHTML = data.name;
+    
+	myFunction(data.VesselName)
 }
+
+function myFunction(vesselName) {
+		 
+		<!--  var url = "http://10.10.14.24/api/mlisa/fixtures?pageSize=10&reportedDate__gte=2019-01-01T05:00:00.000Z&reportedDate__lte=2019-02-01T05:00:00.000Z&vesselname__contains=Ridgebury%20John%20B";
+		  -->
+		  
+		var url = new URL("http://10.10.14.24/api/mlisa/fixtures");
+		var params = {'pageSize' : '10', 'reportedDate__gte' : '2018-01-01T05:00:00.000Z', 'reportedDate__lte' : '2019-06-01T04:00:00.000Z', 'vesselname__contains' : vesselName};
+		url.search = new URLSearchParams(params);
+        fetch(url, {
+         
+        method: 'GET', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, cors, *same-origin
+        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'same-origin', // include, *same-origin, omit
+         
+        headers: {
+                     'Content-Type': 'application/json',
+                     'Authorization': 'Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiaWN0LnVzQG1jcXVpbGxpbmcuY29tIiwic3ViIjoiaWN0LnVzQG1jcXVpbGxpbmcuY29tIiwiYXVkIjoiQW55IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW5pc3RyYXRvciIsIm5iZiI6MTU2NjIxNjU3MiwiZXhwIjoxNTY2MzAyOTcyLCJpc3MiOiJodHRwczovL2F0bGlzLm1jcXVsbGluZy5jb20ifQ.nKfcIzjFa2CqG2tcBOT0BGAeY_Tsc9hqoD0ZyeQeYXA'
+         
+                 }
+        })
+        .then(response => response.json())
+		.then( data => {
+					// JavaScript
+			document.getElementById('tableGoesHere').innerHTML = json2table(data);
+			console.log(data);
+		})
+    }
+	
+/* The function */
+
+function json2table(json, classes) {
+  var cols = Object.keys(json[0]);
+  
+  var headerRow = '';
+  var bodyRows = '';
+  
+  classes = classes || '';
+
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  cols.map(function(col) {
+    headerRow += '<th>' + capitalizeFirstLetter(col) + '</th>';
+  });
+
+  json.map(function(row) {
+    bodyRows += '<tr>';
+
+    cols.map(function(colName) {
+      bodyRows += '<td>' + row[colName] + '</td>';
+    })
+
+    bodyRows += '</tr>';
+  });
+
+  return '<table class="' +
+         classes +
+         '"><thead><tr>' +
+         headerRow +
+         '</tr></thead><tbody>' +
+         bodyRows +
+         '</tbody></table>';
+}
+
+/* How to use it */
 
 </script>
 
-<h2>Basic HTML Table</h2>
+<h2></h2>
 
-<table>
-    <tr>
-        <td id="here">test</td>
-    </tr>
-</table>
+<!-- HTML -->
+<div id="tableGoesHere"></div>
 
-<table style="width:100%">
-  <tr>
-    <th>Firstname</th>
-    <th>Lastname</th> 
-    <th>Age</th>
-  </tr>
-  <tr>
-    <td>Jill</td>
-    <td>Smith</td>
-    <td>50</td>
-  </tr>
-  <tr>
-    <td>Eve</td>
-    <td>Jackson</td>
-    <td>94</td>
-  </tr>
-  <tr>
-    <td>John</td>
-    <td>Doe</td>
-    <td>80</td>
-  </tr>
-</table>
 <a href="https://hiteshsantwani.github.io/PluginDemo/index.html">back</a>
 </body>
 </html>
