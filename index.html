@@ -29,6 +29,7 @@
    </head>
    <body>
       <script>
+	      
          function myFunction() {
 		 var vesselName = document.getElementById("FixtureSearch").value
         
@@ -68,6 +69,11 @@
 				});
          })
          .catch(error => console.error(error))
+		 
+	var b = document.getElementById('name').value,
+        url = 'http://path_to_your_html_files/next.html?name=' + encodeURIComponent(b);
+	document.location.href = url;
+		 
          }
 		 
       </script>
