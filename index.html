@@ -54,12 +54,18 @@
          .then(response => response.json())
          .then(data => {
 		 	console.log(data);
-			Front.dialog('alert', {
-    				title: 'Fixture Data',
-    				message: data.toString()
-  				}, function () {
-    				console.log('Alert closed');
-  			});
+			Front.fuzzylist({
+				    items: [
+					{title: 'Options 1'},
+					{title: 'Options 2'},
+					{title: 'Options 3'}
+				    ]
+				}, function (item) {
+				    if (item)
+					console.log('User selected', item.title);
+				    else
+					console.log('User canceled');
+				});
          })
          .catch(error => console.error(error))
          }
