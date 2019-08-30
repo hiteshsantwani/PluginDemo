@@ -45,19 +45,19 @@
         }
 		 
       </script>
+      <div class="container-fluid">
       <span align="Center">
          <b>
             <p>MLISA Post Fixture</p>
          </b>
       </span>
-      <label for="FixtureSearch">Vessel Name:</label>
-      <input type="text" id="FixtureSearch" name="FixtureSearch" minlength="4" maxlength="256" size="50">
-      <label for="FixtureNumberSearch">Fixture #:</label>
-      <input type="text" id="FixtureNumberSearch" name="FixtureNumberSearch" minlength="4" maxlength="256" size="10">
-      <button onClick="myFunction()">Search</button>
+      <div class="row">
+      <div class="col-sm-2" style="background-color:lavender;"><label for="FixtureSearch">Vessel Name:</label></div>
+      <div class="col-sm-2" style="background-color:lavender;"><input type="text" id="FixtureSearch" name="FixtureSearch" minlength="4" maxlength="256" size="10"></div>
+      <div class="col-sm-2" style="background-color:lavender;"><label for="FixtureNumberSearch">Fixture#:</label></div>
+      <div class="col-sm-2" style="background-color:lavender;"><input type="text" id="FixtureNumberSearch" name="FixtureNumberSearch" minlength="4" maxlength="256" size="10"></div>
+      <div class="col-sm-2" style="background-color:lavender;"><button onClick="myFunction()">Search</button></div>
 	<!-- html button designing and calling the event in javascript -->
-	<input id="btntest" type="button" value="Check" 
-	       onclick = window.open('http://www.google.com'); />
       <table bgcolor="LightGray">
          <tr>
             <td>C/P:<input type="text" id="a" name="a" minlength="4" maxlength="8" size="10"></td>
@@ -154,5 +154,6 @@
       </table>
       <a href='https://app.frontapp.com/open/msg_4rbcn0n' target='_blank'>Document link</a>
       <a href='https://app.frontapp.com/open/msg_4hodq87'>Document link</a>
+      </div>
    </body>
 </html>
