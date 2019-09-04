@@ -17,12 +17,26 @@
          MLISACtls {
          }
 		 
+		 <!-- .center-div
+			{
+			  position: absolute;
+			  margin: auto;
+			  top: 0;
+			  right: 0;
+			  bottom: 0;
+			  left: 0;
+			  width: 100px;
+			  height: 100px;
+			  background-color: #ccc;
+			  border-radius: 3px;
+			} -->
+		 
       </style>
       <!--<script type="text/javascript" src="https://dl.frontapp.com/libs/frontjs.min.js"></script>-->
       <!-- Latest compiled and minified CSS -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 	  
-	  <link href="https://unpkg.com/tabulator-tables@4.4.1/dist/css/tabulator.min.css" rel="stylesheet">
+	  <link href="https://unpkg.com/tabulator-tables@4.4.1/dist/css/tabulator_midnight.min.css" rel="stylesheet">
 
       <!-- jQuery library -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -72,9 +86,13 @@
 		var fixtureName = document.getElementById("FixtureSearch").value
 		var b1 = document.getElementById("FixtureNumberSearch").value;
 		
-		var url = new URL("http://10.10.14.24/api/mlisa/fixtures");
-		var params = {'pageSize' : '10', 'reportedDate__gte' : '2018-01-01T05:00:00.000Z', 'reportedDate__lte' : '2019-06-01T04:00:00.000Z', 'vesselname__contains' : fixtureName};
-		url.search = new URLSearchParams(params);
+		//var url = new URL("http://10.10.14.24/api/mlisa/fixtures");
+		//var params = {'pageSize' : '1000', 'reportedDate__gte' : '2014-01-01T05:00:00.000Z', 'reportedDate__lte' : '2019-06-01T04:00:00.000Z', 'vesselname__contains' : fixtureName};
+		//url.search = new URLSearchParams(params);
+		
+		var url = new URL("http://localhost:55530/api/mlisa/pf_Fixtures/Mattheos%20I");
+		//var params = {'id' : '593BF783-4C80-4B1D-BFC5-0003AED62CA2'};
+		//url.search = new URLSearchParams(params);
 		
 		//define table
 		var table = new Tabulator("#myData", {
@@ -93,7 +111,7 @@
          
         headers: {
                      'Content-Type': 'application/json',
-                     'Authorization': 'Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiaWN0LnVzQG1jcXVpbGxpbmcuY29tIiwic3ViIjoiaWN0LnVzQG1jcXVpbGxpbmcuY29tIiwiYXVkIjoiQW55IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW5pc3RyYXRvciIsIm5iZiI6MTU2NzU5OTk3MSwiZXhwIjoxNTY3Njg2MzcxLCJpc3MiOiJodHRwczovL2F0bGlzLm1jcXVsbGluZy5jb20ifQ.bNtj3bgLrOJyGtuOFbppISBtH5HF3nUuSXBeIKIWyGw'
+                     'Authorization': 'Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiaWN0LnVzQG1jcXVpbGxpbmcuY29tIiwic3ViIjoiaWN0LnVzQG1jcXVpbGxpbmcuY29tIiwiYXVkIjoiQW55IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW5pc3RyYXRvciIsIm5iZiI6MTU2NzYxNjEzNywiZXhwIjoxNTY3NzAyNTM3LCJpc3MiOiJodHRwczovL2F0bGlzLm1jcXVsbGluZy5jb20ifQ.PVxExJKf2sYKz9io2HV3xdcr3IT0SPFQIIMUabv1gx0'
          
                  }
         })
@@ -161,8 +179,9 @@
     </div>
     
 	<div id="myData"></div>
-    
-    <ul class="nav nav-pills nav-stacked">
+	
+    <div>
+    <ul class="nav nav-tabs">
         <li><a class="active" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Documents</a></li>
         <li><a class="active" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Alerts</a></li>
         <li><a class="active" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Notes</a></li>
@@ -171,6 +190,7 @@
         <li><a class="active" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Freight/Commissions</a></li>
         <li><a class="active" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Invoicing</a></li>
     </ul>
+	</div>
       
     <!-- Collapsible element -->
     <div class="collapse" id="collapseExample">
