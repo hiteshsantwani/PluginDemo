@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
    <head>
       <style>
          body {
@@ -27,20 +28,64 @@
       <script type="text/javascript" src="https://dl.frontapp.com/libs/frontjs.min.js"></script>
 	   
    </head>
+   
    <body>
       <script>
-	      
-         function myFunction() {
-		 var vesselName = document.getElementById("FixtureSearch").value
-        
-		<!--  var url = "http://10.10.14.24/api/mlisa/fixtures?pageSize=10&reportedDate__gte=2019-01-01T05:00:00.000Z&reportedDate__lte=2019-02-01T05:00:00.000Z&vesselname__contains=Ridgebury%20John%20B";
-		  -->
-		 
-		var b = document.getElementById("FixtureSearch").value;
+	/* The function */
+function json2table(json, classes) {
+  var cols = Object.keys(json[0]);
+  
+  var headerRow = '';
+  var bodyRows = '';
+  
+  classes = classes || '';
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+  cols.map(function(col) {
+    headerRow += '<th>' + capitalizeFirstLetter(col) + '</th>';
+  });
+  json.map(function(row) {
+    bodyRows += '<tr>';
+    cols.map(function(colName) {
+      bodyRows += '<td>' + row[colName] + '</td>';
+    })
+    bodyRows += '</tr>';
+  });
+  return '<table class="' +
+         classes +
+         '"><thead><tr>' +
+         headerRow +
+         '</tr></thead><tbody>' +
+         bodyRows +
+         '</tbody></table>';
+}
+    function myFunction() {
+		var fixtureName = document.getElementById("FixtureSearch").value
 		var b1 = document.getElementById("FixtureNumberSearch").value;
 		
-        url = 'https://hiteshsantwani.github.io/PluginDemo/Results.html?VesselName=' + encodeURIComponent(b) + '&FixtureNumber' + encodeURIComponent(b1);
-		document.location.href = url;
+		var url = new URL("http://10.10.14.24/api/mlisa/fixtures");
+		var params = {'pageSize' : '10', 'reportedDate__gte' : '2018-01-01T05:00:00.000Z', 'reportedDate__lte' : '2019-06-01T04:00:00.000Z', 'vesselname__contains' : fixtureName};
+		url.search = new URLSearchParams(params);
+        fetch(url, {
+         
+        method: 'GET', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, cors, *same-origin
+        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'same-origin', // include, *same-origin, omit
+         
+        headers: {
+                     'Content-Type': 'application/json',
+                     'Authorization': 'Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiaWN0LnVzQG1jcXVpbGxpbmcuY29tIiwic3ViIjoiaWN0LnVzQG1jcXVpbGxpbmcuY29tIiwiYXVkIjoiQW55IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW5pc3RyYXRvciIsIm5iZiI6MTU2NzU5OTk3MSwiZXhwIjoxNTY3Njg2MzcxLCJpc3MiOiJodHRwczovL2F0bGlzLm1jcXVsbGluZy5jb20ifQ.bNtj3bgLrOJyGtuOFbppISBtH5HF3nUuSXBeIKIWyGw'
+         
+                 }
+        })
+        .then(response => response.json())
+		.then( data => {
+					// JavaScript
+			document.getElementById('myData').innerHTML = json2table(data);
+			console.log(data);
+		})
 		
         }
 		 
@@ -52,15 +97,15 @@
          </b>
       </span>
       <div class="row">
-      <div class="col-sm-2" style="background-color:lavender;"><label for="FixtureSearch">Vessel Name:</label></div>
-      <div class="col-sm-2" style="background-color:lavender;"><input type="text" id="FixtureSearch" name="FixtureSearch" minlength="4" maxlength="256" size="40"></div>
-      <div class="col-sm-2" style="background-color:lavender;"><label for="FixtureNumberSearch">Fixture #:</label></div>
-      <div class="col-sm-2" style="background-color:lavender;"><input type="text" id="FixtureNumberSearch" name="FixtureNumberSearch" minlength="4" maxlength="256" size="40"></div>
-      <div class="col-sm-2" style="background-color:lavender;"><button onClick="myFunction()">Search</button></div>
-	<!-- html button designing and calling the event in javascript -->
+		  <div class="col-sm-2" style="background-color:lavender;"><label for="FixtureSearch">Vessel Name:</label></div>
+		  <div class="col-sm-2" style="background-color:lavender;"><input type="text" id="FixtureSearch" name="FixtureSearch" minlength="4" maxlength="256" size="40"></div>
+		  <div class="col-sm-2" style="background-color:lavender;"><label for="FixtureNumberSearch">Fixture #:</label></div>
+		  <div class="col-sm-2" style="background-color:lavender;"><input type="text" id="FixtureNumberSearch" name="FixtureNumberSearch" minlength="4" maxlength="256" size="40"></div>
+		  <div class="col-sm-2" style="background-color:lavender;"><button onClick="myFunction()">Search</button></div>
+	  </div>
     
     
-    <div class="form-group row">
+    <div class="form-group row" align="center">
       <div class="col-xs-2">
         <label for="ex1">C/P:</label>
         <input class="form-control" id="ex1" type="text">
@@ -98,37 +143,27 @@
       </div>
     </div>
     
-      <div class="form-group row">
-      <div class="col-xs-4">
-        <label for="ex1">L/D Ports:</label>
-        <label for="ex1">Activity Port</label>
-        <label for="ex1">Load GOLA</label>
-        <label for="ex1">Disch St Charles</label>
-      </div>
-    </div>
-     
-      <ul class="nav nav-pills nav-stacked">
-      <li><a class="active" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Search Results</a></li>
-         <li><a class="active" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Documents</a></li>
-         <li><a class="active" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Alerts</a></li>
-         <li><a class="active" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Notes</a></li>
-         <li><a class="active" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Itinerary</a></li>
-         <li><a class="active" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Claims</a></li>
-         <li><a class="active" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Freight/Commissions</a></li>
-         <li><a class="active" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Invoicing</a></li>
-      </ul>
-      <div>
+	<div id="myData"></div>
+    
+    <ul class="nav nav-pills nav-stacked">
+        <li><a class="active" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Documents</a></li>
+        <li><a class="active" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Alerts</a></li>
+        <li><a class="active" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Notes</a></li>
+        <li><a class="active" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Itinerary</a></li>
+        <li><a class="active" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Claims</a></li>
+        <li><a class="active" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Freight/Commissions</a></li>
+        <li><a class="active" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Invoicing</a></li>
+    </ul>
       
-      </div>
-      <!-- Collapsible element -->
-      <div class="collapse" id="collapseExample">
-         <div class="iframe">
-            <iframe src="https://www.marinetraffic.com/en/ais/home/shipid:714491/zoom:10" frameborder="0" style="border:0" allowfullscreen width="100%"></iframe>
-            <button onClick="unassign()">File</button>
-            <button onClick="toggleArchive()">Chrt Reply</button>
-            <button onClick="toggleTrashed()">Owner Reply</button>
-         </div>
-      </div>
+    <!-- Collapsible element -->
+    <div class="collapse" id="collapseExample">
+        <div class="iframe">
+			<iframe src="https://www.marinetraffic.com/en/ais/home/shipid:714491/zoom:10" frameborder="0" style="border:0" allowfullscreen width="100%"></iframe>
+			<button onClick="unassign()">File</button>
+			<button onClick="toggleArchive()">Chrt Reply</button>
+			<button onClick="toggleTrashed()">Owner Reply</button>
+        </div>
+    </div>
 
       </div>
    </body>
