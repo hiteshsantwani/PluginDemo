@@ -92,7 +92,6 @@
 		document.getElementById("LabelStatus").innerHTML = rowData["Status"];
 		document.getElementById("LabelLoad").innerHTML = rowData["Load"];
 		document.getElementById("LabelDischarge").innerHTML = rowData["Discharge"];
-		
 	}
 	
     function myFunction() {
@@ -153,41 +152,49 @@
       </span>
       <div class="row">
 	 
-		  <div class="col-sm-2" style="background-color:lavender;"><label for="FixtureSearch">Vessel Name:</label></div>
-		  <div class="col-sm-2" style="background-color:lavender;"><input type="text" id="FixtureSearch" name="FixtureSearch" required="required" minlength="4" maxlength="256" size="40"></div>
-		  <div class="col-sm-2" style="background-color:lavender;"><label for="FixtureNumberSearch">Fixture #:</label></div>
-		  <div class="col-sm-2" style="background-color:lavender;"><input type="text" id="FixtureNumberSearch" name="FixtureNumberSearch" minlength="4" maxlength="256" size="40"></div>
-		  <div class="col-sm-2" style="background-color:lavender;"><button onClick="myFunction()">Search</button></div>
+		  <label for="FixtureSearch">Vessel Name:</label>
+		  
+		  <i class="fas fa-search" aria-hidden="true"></i>
+		  <input class="form-control form-control-sm ml-3 w-75" type="text" id="FixtureSearch" aria-label="FixtureSearch" required="required" minlength="4" maxlength="256" size="40">
+		  
+		  <label for="FixtureNumberSearch">Fixture #:</label>
+		 
+		  <i class="fas fa-search" aria-hidden="true"></i>
+		  <input class="form-control form-control-sm ml-3 w-75" type="text" id="FixtureNumberSearch" aria-label="FixtureNumberSearch" minlength="4" maxlength="256" size="40">
+		 
+		  <button class="btn btn-primary" onClick="myFunction()">Search</button>
 		  
 	  </div>
-    
-    <div class="form-group row">
-      <div class="col-xs-2">
+	  </br>
+    <table class="table table-hover">
+	<tr>
+	<td>
 		<h4>C/P: <span class="label label-info" id="Labelcp"></span></h4>
-      </div>
-      <div class="col-xs-2">
+	</td>
+	<td>
 		<h4>Charterer: <span class="label label-info" id="LabelCharterer"></span></h4>
-      </div>
-      <div class="col-xs-2">
+	</td>
+	<td>
 		<h4>Eff. Ctl: <span class="label label-info" id="LabelEffectiveControl"></span></h4>
-      </div>
-      <div class="col-xs-2">
+	</td>
+	<td>
 		<h4>Lay Date: <span class="label label-info" id="LabelLayDate"></span></h4>
-      </div>
     </div>
-    
+	</td>
+    </tr>
+	<tr>
+	<td>
     <div class="form-group row">
-      <div class="col-xs-2">
 		<h4>Cargo: <span class="label label-info" id="LabelCargo"></span></h4>
-      </div>
-      <div class="col-xs-2">
+	</td>
+	<td>
 		<h4>Size: <span class="label label-info" id="LabelSize"></span></h4>
-      </div>
-      <div class="col-xs-2">
+	</td>
+	<td>
 		<h4>Status: <span class="label label-info" id="LabelStatus"></span></h4>
-      </div>
-    </div>
-    
+	 </td>
+	</tr>
+    </table>
 <div class="container">
   <div class="panel-group">
     <div class="panel panel-default">
@@ -246,7 +253,7 @@
         <td>GOLA Load:</td>
       </tr>
       <tr>
-        <td><h4>Disch: <span class="label label-info" id="LabelDischarge"></span></h4>Disch:</td>
+        <td><h4>Disch: <span class="label label-info" id="LabelDischarge"></span></h4></td>
         <td></td>
       </tr>
     </tbody>
