@@ -111,7 +111,9 @@
 			columns:[
 			{title:"Fixture Number", field:"FixtureNumber", sorter:"number"},
 			{title:"Vessel Name", field:"VesselName", sorter:"string"},
-			{title:"Charter Party Date", field:"CharterPartyDate", sorter:"date"},
+			{title:"Charter Party Date", field:"CharterPartyDate", sorter:"date", formatter:function(cell, formatterParams){
+				return cell.getValue().split('T')[0];
+			},},
 			{title:"Charterer", field:"Charterer", sorter:"string"},
 			{title:"Owner", field:"owner", sorter:"string"},
 		],
@@ -211,7 +213,6 @@
       </div>
     </div>
   </div>
-
   
     <div>
     <ul class="nav nav-tabs">
@@ -224,7 +225,7 @@
         <li><a class="active" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Invoicing</a></li>
     </ul>
 	</div>
-      
+
     <!-- Collapsible element -->
     <div class="collapse" id="collapseExample">
         <div class="iframe">
@@ -245,7 +246,7 @@
     </thead>
     <tbody>
       <tr>
-        <td>Activity:</td>
+        <td><h4>Activity: <span class="label label-info" id="LabelActivity"></span></h4></td>
         <td>Last Port Activity ETA:</td>
       </tr>
       <tr>
