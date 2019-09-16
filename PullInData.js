@@ -31,7 +31,11 @@
 			{title:"Fixture Number", field:"FixtureNumber", sorter:"number"},
 			{title:"Vessel Name", field:"VesselName", sorter:"string"},
 			{title:"Charter Party Date", field:"CharterPartyDate", sorter:"date", formatter:function(cell, formatterParams){
-				return cell.getValue().split('T')[0];
+				if ('undefined' !== typeof cell.value){
+					return cell.getValue().split('T')[0];
+				} else{
+					return '';
+				}
 			},},
 			{title:"Charterer", field:"Charterer", sorter:"string"},
 			{title:"Owner", field:"owner", sorter:"string"},
@@ -50,7 +54,7 @@
          
         headers: {
                      'Content-Type': 'application/json',
-                     'Authorization': 'Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiaWN0LnVzQG1jcXVpbGxpbmcuY29tIiwic3ViIjoiaWN0LnVzQG1jcXVpbGxpbmcuY29tIiwiYXVkIjoiQW55IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW5pc3RyYXRvciIsIm5iZiI6MTU2ODIxMjM0NywiZXhwIjoxNTY4Mjk4NzQ3LCJpc3MiOiJodHRwczovL2F0bGlzLm1jcXVsbGluZy5jb20ifQ.v6CP5t6AIYhDl6w4QyOt2X3_myJTb93qb_DftO6X5lQ'
+                     'Authorization': 'Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiaWN0LnVzQG1jcXVpbGxpbmcuY29tIiwic3ViIjoiaWN0LnVzQG1jcXVpbGxpbmcuY29tIiwiYXVkIjoiQW55IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW5pc3RyYXRvciIsIm5iZiI6MTU2ODYzOTAxNCwiZXhwIjoxNTY4NzI1NDE0LCJpc3MiOiJodHRwczovL2F0bGlzLm1jcXVsbGluZy5jb20ifQ.6GN59Hyxqxmw0O8AY0-Z_e4x2h9VhWyS05I0I3Gbolw'
          
                  }
         })
