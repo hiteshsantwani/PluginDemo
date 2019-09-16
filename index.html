@@ -130,7 +130,8 @@
 
     <div>
     <ul class="nav nav-tabs">
-        <li><a class="active" id="Documents" onclick='PopulateData(this.id, document.getElementById("pfId").innerHTML)' data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Documents</a></li>
+        <li><a class="active" id="Messages" onclick='PopulateData(this.id, document.getElementById("pfId").innerHTML)' data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Messages</a></li>
+        <li><a class="active" id="Attachments" onclick='PopulateData(this.id, document.getElementById("pfId").innerHTML)' data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Attachments</a></li>
         <li><a class="active" id="Alerts" onclick='PopulateData(this.id, document.getElementById("pfId").innerHTML)' data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Alerts</a></li>
         <li><a class="active" id="Notes" onclick='PopulateData(this.id, document.getElementById("pfId").innerHTML)' data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Notes</a></li>
         <li><a class="active" id="Itinerary" onclick='PopulateData(this.id, document.getElementById("pfId").innerHTML)' data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Itinerary</a></li>
@@ -145,6 +146,7 @@
         <div class="container">
 			
           <div id="RelatedData"></div>
+          <div id="AdjacentRelatedData"></div>
           
           <button onClick="unassign()">File</button>
           <button onClick="toggleArchive()">Chrt Reply</button>
