@@ -1,6 +1,35 @@
 function PopulateData(tab, id) {
-    
-    var url = new URL("http://localhost:55530/api/mlisa/pf_ItineraryFrontApp?pf_Id=" + encodeURIComponent(id));
+
+    var url;
+
+    switch(tab) {
+        case "Messages":
+                url = new URL("http://localhost:55530/api/mlisa/pf_MessagesFrontApp?pf_Id=" + encodeURIComponent(id));
+            break;
+        case "Attachments":
+                url = new URL("http://localhost:55530/api/mlisa/pf_AttachmentFrontApp?pf_Id=" + encodeURIComponent(id));
+            break;
+        case "Alerts":
+                url = new URL("http://localhost:55530/api/mlisa/pf_AlertFrontApp?pf_Id=" + encodeURIComponent(id));
+            break;
+        case "Notes":
+                url = new URL("http://localhost:55530/api/mlisa/pf_ItineraryFrontApp?pf_Id=" + encodeURIComponent(id));
+            break;
+        case "Itinerary":
+                url = new URL("http://localhost:55530/api/mlisa/pf_ItineraryFrontApp?pf_Id=" + encodeURIComponent(id));
+            break;
+        case "Invoicing":
+                url = new URL("http://localhost:55530/api/mlisa/pf_InvoiceFrontApp?pf_Id=" + encodeURIComponent(id));
+            break;
+        case "Claims":
+                url = new URL("http://localhost:55530/api/mlisa/pf_ClaimFrontApp?pf_Id=" + encodeURIComponent(id));
+            break;
+        case "Freight":
+                url = new URL("http://localhost:55530/api/mlisa/pf_CommissionFrontApp?pf_Id=" + encodeURIComponent(id));
+            break;
+        default:
+                url = new URL("http://localhost:55530/api/mlisa/pf_ItineraryFrontApp?pf_Id=" + encodeURIComponent(id));
+    }
 
     var table = new Tabulator("#RelatedData", {
 
@@ -8,7 +37,6 @@ function PopulateData(tab, id) {
         layout:"fitColumns",
         placeholder:"No Data Set",
         autoColumns:true,
-
     });
 
     fetch(url, {
@@ -20,7 +48,7 @@ function PopulateData(tab, id) {
          
         headers: {
                      'Content-Type': 'application/json',
-                     'Authorization': 'Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiaWN0LnVzQG1jcXVpbGxpbmcuY29tIiwic3ViIjoiaWN0LnVzQG1jcXVpbGxpbmcuY29tIiwiYXVkIjoiQW55IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW5pc3RyYXRvciIsIm5iZiI6MTU2ODIxMjM0NywiZXhwIjoxNTY4Mjk4NzQ3LCJpc3MiOiJodHRwczovL2F0bGlzLm1jcXVsbGluZy5jb20ifQ.v6CP5t6AIYhDl6w4QyOt2X3_myJTb93qb_DftO6X5lQ'
+                     'Authorization': 'Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiaWN0LnVzQG1jcXVpbGxpbmcuY29tIiwic3ViIjoiaWN0LnVzQG1jcXVpbGxpbmcuY29tIiwiYXVkIjoiQW55IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW5pc3RyYXRvciIsIm5iZiI6MTU2ODYzOTAxNCwiZXhwIjoxNTY4NzI1NDE0LCJpc3MiOiJodHRwczovL2F0bGlzLm1jcXVsbGluZy5jb20ifQ.6GN59Hyxqxmw0O8AY0-Z_e4x2h9VhWyS05I0I3Gbolw'
          
                  }
         })
@@ -28,5 +56,7 @@ function PopulateData(tab, id) {
 		.then( data => {
 			table.setData(data);
 			console.log(data);
-		})
+        })
+
 }
+
