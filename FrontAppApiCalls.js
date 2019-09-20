@@ -4,12 +4,13 @@ function Notes() {
     Front.fetchNotes(conversation);
   }
 
-  function fetchTeammates() {
-    Front.fetchAllowedTeammates(function (teammates) {
-      if (!teammates)
-        return;
-  
-      console.log(teammates);
-    });
-  }
+function fetchInboxes() {
+  Front.fetchInboxes(function (inboxes) {
+    if (!inboxes)
+      return;
+
+    console.log(inboxes);
+  });
+}
+
   
