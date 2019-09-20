@@ -31,9 +31,9 @@
 			{title:"Fixture Number", field:"FixtureNumber", sorter:"number"},
 			{title:"Vessel Name", field:"VesselName", sorter:"string"},
 			{title:"Charter Party Date", field:"CharterPartyDate", sorter:"date", formatter:function(cell, formatterParams){
-				if ('undefined' !== typeof cell.value){
+				try {
 					return cell.getValue().split('T')[0];
-				} else{
+				} catch(err){
 					return '';
 				}
 			},},
