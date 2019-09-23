@@ -20,17 +20,17 @@ function fileMessage() {
 
                 ID: uuidv4(),
                 pfFixtureID: ID,
-                MessageDate: $("#MessageDate").innerText, // get it from the message i.e email datas
-                SystemMsgReference: $("#MessageId").innerText, //get it from the message i.e email datas
+                MessageDate: document.getElementById("MessageDate").innerText, // get it from the message i.e email datas
+                SystemMsgReference: document.getElementById("MessageId").innerText, //get it from the message i.e email datas
                 DisplayMsgReference: 'US12669782', // not sure
                 CommsSystemCode: 'F',
                 DisplayCompany: 'OpsUS',
-                Subject:  $("#Subject").innerText, // get this from the plugin
-                Description:  $("#Description").innerText, // get this from the plugin
-                DisplayStatus:  $("#Status").innerText, // get this from the plugin
+                Subject:  document.getElementById("Subject").value, // get this from the plugin
+                Description:  document.getElementById("Description").value, // get this from the plugin
+                DisplayStatus:  document.getElementById("Status").value, // get this from the plugin
                 UpdateUserCode: 'AB',
                 UpdateDate: '2019-04-10 08:39:39.007', // current date
-                RecipientsDisplay: $("#SenderRecipients").innerText,
+                RecipientsDisplay: document.getElementById("SenderRecipients").value,
                 ExternalAttachmentID: null,
                 pfFixtureFolderID: null
 
