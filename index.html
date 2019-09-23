@@ -47,6 +47,7 @@
 	   
       <script type="text/javascript" src="https://dl.frontapp.com/libs/frontjs.min.js"></script>
       <script type="text/javascript" src="test-plugin_Demo.js"></script>
+      <script type="text/javascript" src="File_Message.js"></script>
 	     
 
    </head>
@@ -129,6 +130,7 @@
 
   <label hidden id="pfId"></label>
   <label hidden id="MessageId"></label>
+  <label hidden id="MessageDate"></label>
 
     <div>
     <ul class="nav nav-tabs">
@@ -150,9 +152,40 @@
           <div id="RelatedData"></div>
           <div id="AdjacentRelatedData"></div>
           
-          <button onClick="fetchInboxes()">File</button>
+          <button id="FileMessageButton" onClick="ShowHideDetails()">File</button>
           <button onClick="toggleArchive()">Chrt Reply</button>
           <button onClick="toggleTrashed()">Owner Reply</button>
+
+          <div hidden id="FileMessageInput">
+            <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">Sender Recipients</span>
+            </div>
+              <input id="SenderRecipients" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+            </div>
+
+            <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">Subject</span>
+            </div>
+              <input id="Subject" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+            </div>
+
+            <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">Description</span>
+            </div>
+              <input id="Description" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+            </div>
+
+            <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">Status</span>
+            </div>
+              <input id="Status" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+            </div>
+            <button type="button" class="btn btn-primary" onClick="fileMessage()">Complete Filing</button>
+          </div>
         </div>
     </div>
 	

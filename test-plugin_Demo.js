@@ -76,6 +76,7 @@ Front.on('conversation', function (data) {
   console.log('Message', data.message);
 
   document.getElementById("MessageId").innerHTML = data.message.id;
+  document.getElementById("MessageDate").innerHTML = new Date(data.message.date);
 
   conversation = data.conversation;
 });
