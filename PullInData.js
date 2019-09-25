@@ -1,4 +1,3 @@
-	
 	function populateMoreData(row) {
 		var rowData = row.getData();
 		document.getElementById("Labelcp").innerHTML = rowData["CP"].split('T')[0];
