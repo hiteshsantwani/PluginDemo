@@ -77,7 +77,7 @@ Front.on('conversation', function (data) {
 
   timestamp = data.message.date;
 
-  var date = new Date(timestamp * 1000);
+  var date = new Date(timestamp);
 
   var year = date.getFullYear();
   var month = date.getMonth() + 1;
