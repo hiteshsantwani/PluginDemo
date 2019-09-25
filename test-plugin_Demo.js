@@ -87,7 +87,7 @@ Front.on('conversation', function (data) {
   var seconds = date.getSeconds();
 
   document.getElementById("MessageId").innerHTML = data.message.id;
-  document.getElementById("MessageDate").innerHTML = year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + secon;
+  document.getElementById("MessageDate").innerHTML = year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds;
 
   conversation = data.conversation;
 });
