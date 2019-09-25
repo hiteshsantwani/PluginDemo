@@ -46,6 +46,7 @@ function fileMessage() {
             contentType: "application/json"
 
         });
+        PopulateData("Messages", document.getElementById("pfId").innerHTML)
 }
 
 function uuidv4() {
