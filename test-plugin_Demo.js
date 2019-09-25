@@ -75,8 +75,19 @@ function fetchInboxes() {
 Front.on('conversation', function (data) {
   console.log('Message', data.message);
 
+  timestamp = data.message.date;
+
+  var date = new Date(timestamp * 1000);
+
+  var year = date.getFullYear();
+  var month = date.getMonth() + 1;
+  var day = date.getDate();
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  var seconds = date.getSeconds();
+
   document.getElementById("MessageId").innerHTML = data.message.id;
-  document.getElementById("MessageDate").innerHTML = new Date(data.message.date);
+  document.getElementById("MessageDate").innerHTML = year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + secon;
 
   conversation = data.conversation;
 });
