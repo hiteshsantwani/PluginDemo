@@ -35,6 +35,9 @@ function fileMessage() {
                 pfFixtureFolderID: null
 
              }),
+             success: function(e){
+              $("#FileMessageInput").toggle();
+             },
             error: function(e) {
                 console.log(e);
               },
