@@ -1,6 +1,6 @@
 var windowObjectReference;
-var strWindowFeatures = "menubar=yes,location=yes,resizable=yes,scrollbars=yes,status=yes";
+var strWindowFeatures = "height=600,width=1050";
 
 function openRequestedPopup() {
-  windowObjectReference = window.open("http://www.foxnews.com/", "FOX_WindowName", strWindowFeatures);
+    window.open('http://www.google.com/', 'Opened window from Plugin', strWindowFeatures);
 }
